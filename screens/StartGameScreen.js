@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
-import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, 
+        Keyboard, Alert} from 'react-native';
 import Card from '../components/Card'
 import Colors from '../constants/colors'
 import Input from '../components/Input'
+import Number from '../components/Number'
 
-export default function StartGameScreen() {
+const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmedInput, setConfirmedInput] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
@@ -20,10 +22,14 @@ export default function StartGameScreen() {
 
     const confirmInputHandler = () => {
         let enteredNumber = parseInt(enteredValue);
-        if(enteredNumber === NaN || enteredNumber <=0 || enteredNumber > 99){
+        if(isNaN(enteredNumber) || enteredNumber <=0 || enteredNumber > 99){
+            Alert.alert(
+                "Invalid Number!", 
+                "Enter a valid number between 1 and 99.", 
+                [{ text:"Okay", style:'destructive', onPress: resetInputHandler }]
+                )
             return;
         }
-
         setConfirmedInput(true);
         setEnteredValue('');
         setSelectedNumber(enteredNumber);
@@ -31,7 +37,18 @@ export default function StartGameScreen() {
 
     let confirmedOutput;
     if(confirmedInput){
-        confirmedOutput = <Text>Chosen number: {selectedNumber}</Text>
+        confirmedOutput = (
+            <View>
+                <Card style={styles.summaryContainer}>
+                    <Text>You have selected</Text>
+                    <Number>{selectedNumber}</Number>
+                    <Button
+                        title="Start Game" 
+                        onPress={props.onStartGame.bind(this, selectedNumber)}
+                        />
+                </Card>
+            </View>
+        )
     }
 
     return (
@@ -65,7 +82,7 @@ export default function StartGameScreen() {
                         </View>
                     </View>
                 </Card>
-                <View>{confirmedOutput}</View>
+                {confirmedOutput}
             </View>
         </TouchableWithoutFeedback>
     )
@@ -109,5 +126,10 @@ const styles=StyleSheet.create({
         textAlign: 'center',
         borderBottomWidth: 1,
         borderBottomColor: 'grey'
+    },
+    summaryContainer: {
+        marginVertical: 10
     }
 })
+
+export default StartGameScreen;
