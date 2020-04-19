@@ -1,18 +1,23 @@
 import React from 'react'
-import {View, Text, StyleSheet, Button, Alert} from 'react-native'
+import {View, StyleSheet, Button, Image} from 'react-native'
 import Colors from '../constants/colors'
-import Number from '../components/Number'
 import languageStrings from '../constants/strings'
+import BodyText from '../components/BodyText'
+import TitleText from '../components/TitleText'
 
 const GameOverScreen = props => {
     const Strings = languageStrings[props.language];
 
     return (
         <View style={styles.screen}>
-            <Text style={styles.header}>{Strings.GameOverHeaderText}</Text>
-            <Text>{Strings.NumberOfRoundsHelpText}{props.totalRounds}</Text>
-            <Text>{Strings.SelectedNumberHelpText}</Text>
-            <Number>{props.guessNumber}</Number>
+            <TitleText style={styles.header}>{Strings.GameOverHeaderText}</TitleText>
+            <Image 
+                style={styles.image}
+                resizeMode='stretch'
+                source={require('../assets/images/road_end.jpg')}/>
+            <BodyText>{Strings.NumberOfRoundsHelpText}: {props.totalRounds}</BodyText>
+            <BodyText>{Strings.SelectedNumberHelpText}: {props.guessNumber}</BodyText>
+            <BodyText>{props.guessNumber}</BodyText>
             <View style={styles.buttonContainer}>
                 <Button 
                     title={Strings.StartNewGameButtonText} 
@@ -41,6 +46,10 @@ const styles = StyleSheet.create({
     },
     button:{
         color: Colors.primary
+    },
+    image:{
+        width: '80%',
+        height: 320
     }
 })
 

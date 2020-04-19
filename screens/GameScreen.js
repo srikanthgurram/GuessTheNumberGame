@@ -25,6 +25,7 @@ const GameScreen = props => {
     const currentHigh = useRef(100);
 
     useEffect(() => {
+        console.log(`Low:${currentLow.current} , Guess:${currentGuess} , High:${currentHigh.current}`)
         if(currentGuess === userChoice){
             onGameOver(rounds, currentGuess);
         }
