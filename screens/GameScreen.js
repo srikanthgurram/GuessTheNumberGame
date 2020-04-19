@@ -10,7 +10,7 @@ const generateRandomBetween = (min, max, exclude) => {
     const randNumber = Math.floor(Math.random() * (max-min)) + min;
     
     if(randNumber === exclude){
-        generateRandomBetween(min, max, exclude);
+        return generateRandomBetween(min, max, exclude);
     }else{
         return randNumber;
     }
