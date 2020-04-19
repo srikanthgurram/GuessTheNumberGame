@@ -5,7 +5,7 @@ import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 import * as Font from 'expo-font'
-import {Apploading} from 'expo'
+import {AppLoading} from 'expo'
 import Language from './screens/LanguageScreen'
 
 const fetchFonts = () =>{
@@ -24,11 +24,13 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
   if(!dataLoaded){
-    <Apploading 
-      startAsync={fetchFonts}
-      onFinish={() => setDataLoaded(true)}
-      onError={(err) => console.log(err)}
-    />
+    return(
+      <AppLoading 
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
   }
 
   const startGameHandler = enteredNumber =>{
@@ -53,7 +55,7 @@ export default function App() {
 
   let content = <Language selectLanguage={languageHandler}/>
 
-  if(languageSelected){
+  if(languageSelected && !userNumber){
     content = <StartGameScreen 
                 onStartGame={startGameHandler}
                 language={language}>

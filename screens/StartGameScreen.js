@@ -23,12 +23,12 @@ const StartGameScreen = props => {
     }
 
     const confirmInputHandler = () => {
-        let enteredNumber = parseInt(enteredValue);
+        const enteredNumber = parseInt(enteredValue);        
         if(isNaN(enteredNumber) || enteredNumber <=0 || enteredNumber > 99){
             Alert.alert(
-                "Invalid Number!", 
-                "Enter a valid number between 1 and 99.", 
-                [{ text:"Okay", style:'destructive', onPress: resetInputHandler }]
+                Strings.InvalidNumberAlertTitle, 
+                Strings.InvalidNumberErrorDescription, 
+                [{ text:Strings.OkayButtonText, style:'destructive', onPress: resetInputHandler }]
                 )
             return;
         }

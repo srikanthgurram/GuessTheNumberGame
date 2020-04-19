@@ -12,7 +12,13 @@ export default{
         GreaterButtonText: "Greater",
         GameOverHeaderText: "Game Over !!!",
         NumberOfRoundsHelpText:"Number of Rounds:",
-        StartNewGameButtonText: "New Game"
+        StartNewGameButtonText: "New Game",
+        InvalidNumberAlertTitle: "Invalid Number!", 
+        InvalidNumberErrorDescription: "Enter a valid number between 1 and 99.",
+        OkayButtonText: "Okay",
+        FalseButtonAlertTitle:'Don\'t Lie!', 
+        FalseButtonAlertDescription: "You know that",
+        SorryButtonText: "Sorry!"
     },
     TL: {
         HeaderText:"సంఖ్య ను ఊహించండి",
@@ -27,6 +33,12 @@ export default{
         GreaterButtonText: "పెద్దది",  
         GameOverHeaderText: "ఆట ముగిసింది !!!",
         NumberOfRoundsHelpText:"మొత్తం రౌండ్లు:",
-        StartNewGameButtonText: "కొత్త ఆట"
+        StartNewGameButtonText: "కొత్త ఆట",
+        InvalidNumberAlertTitle: "ఈ సంఖ్య  చెల్లదు!", 
+        InvalidNumberErrorDescription: "మీరు ఎంచుకునే సంఖ్య  1 నుండి 99 మధ్యలోనే ఉండాలి.",
+        OkayButtonText: "సరే",
+        FalseButtonAlertTitle:'ఇది నిజం కాదు!', 
+        FalseButtonAlertDescription: "అది నీకు కూడా తెలుసు",
+        SorryButtonText: "క్షమించు!"        
     }
 }
