@@ -11,15 +11,17 @@ const GameOverScreen = props => {
     return (
         <View style={styles.screen}>
             <TitleText style={styles.header}>{Strings.GameOverHeaderText}</TitleText>
-            <Image 
-                style={styles.image}
-                resizeMode='stretch'
-                source={require('../assets/images/road_end.jpg')}/>
+            <View style={styles.imageContainer}>
+                <Image 
+                    style={styles.image}
+                    resizeMode='stretch'
+                    source={require('../assets/images/road_end.jpg')}/>
+            </View>
             <BodyText>{Strings.NumberOfRoundsHelpText}: {props.totalRounds}</BodyText>
             <BodyText>{Strings.SelectedNumberHelpText}: {props.guessNumber}</BodyText>
-            <BodyText>{props.guessNumber}</BodyText>
             <View style={styles.buttonContainer}>
                 <Button 
+                    style={styles.button}
                     title={Strings.StartNewGameButtonText} 
                     onPress={props.newGameHandler} 
                     color={Colors.primary}
@@ -33,23 +35,34 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        fontSize: 20
     },
     header: {
         fontSize: 40,
         color: Colors.secondary,
-        marginVertical: 20
+        marginVertical: 10
     },
     buttonContainer:{
         marginVertical: 20,
-        width: '50%'
+        width: '50%',
+        height: 40
     },
     button:{
         color: Colors.primary
     },
-    image:{
+    imageContainer:{
         width: '80%',
-        height: 320
+        height: 320,
+        borderRadius: 160,
+        borderWidth: 3,
+        borderColor: 'black',
+        overflow: 'hidden',
+        marginVertical: 20
+    },
+    image:{
+        width: '100%',
+        height: '100%'
     }
 })
 
