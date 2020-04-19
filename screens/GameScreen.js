@@ -4,13 +4,10 @@ import Card from '../components/Card'
 import Number from '../components/Number'
 
 const generateRandomBetween = (min, max, exclude) => {
-    console.log(`Min ${min}`)
-    console.log(`Max ${max}`)
-    console.log(`Exlude ${exclude}`)
-    
     min = Math.ceil(min)
     max = Math.floor(max)
     const randNumber = Math.floor(Math.random() * (max-min)) + min;
+    
     if(randNumber === exclude){
         generateRandomBetween(min, max, exclude);
     }else{
@@ -27,10 +24,11 @@ const GameScreen = props => {
     const currentHigh = useRef(100);
 
     useEffect(() => {
-        if(currentGuess == userChoice){
-            onGameOver(rounds);
+        if(currentGuess === userChoice){
+            onGameOver(rounds, currentGuess);
         }
     }, [currentGuess, userChoice, onGameOver])
+    
     const nextGuessHandler = direction => {
         if(
             (direction === 'lower' && currentGuess < userChoice) ||
@@ -43,16 +41,12 @@ const GameScreen = props => {
         }
 
         if(direction === 'lower'){
-            console.log(`guess lower than ${currentGuess}`)
             currentHigh.current = currentGuess;
         }else{
-            console.log(`guess higher than ${currentGuess}`)
             currentLow.current = currentGuess;
         }
-        console.log(`curren Low ${currentLow}`)
-        console.log(`current High ${currentHigh}`)
 
-        const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, props.userChoice);
+        const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
         setRounds(currentRounds => currentRounds + 1);
     }
