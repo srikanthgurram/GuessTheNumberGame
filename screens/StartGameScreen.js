@@ -5,11 +5,13 @@ import Card from '../components/Card'
 import Colors from '../constants/colors'
 import Input from '../components/Input'
 import Number from '../components/Number'
+import languageStrings from '../constants/strings'
 
 const StartGameScreen = props => {
     const [enteredValue, setEnteredValue] = useState('');
     const [confirmedInput, setConfirmedInput] = useState(false);
     const [selectedNumber, setSelectedNumber] = useState();
+    const Strings = languageStrings[props.language];
 
     const inputTextHandler = inputText => {
         setEnteredValue(inputText.replace(/[^0-9]/g, ''));
@@ -41,10 +43,10 @@ const StartGameScreen = props => {
         confirmedOutput = (
             <View>
                 <Card style={styles.summaryContainer}>
-                    <Text>You have selected</Text>
+                    <Text>{Strings.SelectedNumberHelpText}</Text>
                     <Number>{selectedNumber}</Number>
                     <Button
-                        title="Start Game" 
+                        title={Strings.StartGameButtonText} 
                         onPress={props.onStartGame.bind(this, selectedNumber)}
                         />
                 </Card>
@@ -56,8 +58,8 @@ const StartGameScreen = props => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.screen}>
                 <Card>
-                    <Text style={styles.title}>Start a New Game</Text>
-                    <Text>Select a number</Text>
+                    <Text style={styles.title}>{Strings.StartGameHeaderText}</Text>
+                    <Text>{Strings.UserChoiceInputText}</Text>
                     <Input
                         style={styles.textBox} 
                         keyboardType="number-pad" 
@@ -69,14 +71,14 @@ const StartGameScreen = props => {
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
                             <Button 
-                                title="Reset" 
+                                title={Strings.ResetButtonText} 
                                 color={Colors.secondary} 
                                 onPress={resetInputHandler}
                             />
                         </View>
                         <View style={styles.button}>
                             <Button 
-                                title="Confirm" 
+                                title={Strings.ConfirmButtonText} 
                                 color={Colors.primary}
                                 onPress={confirmInputHandler}
                             />

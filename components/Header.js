@@ -1,11 +1,14 @@
-import React from 'react'
+import React, {useState, useRef} from 'react'
 import {View, Text, StyleSheet} from 'react-native'
 import Colors from '../constants/colors'
+import languageStrings from '../constants/strings'
 
-export default function Header() {
+export default function Header(props) {
+    const Strings = languageStrings[props.language];
+
     return (
         <View style={styles.header}>
-            <Text style={styles.textHeader}>Guess a Number</Text>
+            <Text style={styles.textHeader}>{Strings.HeaderText}</Text>
         </View>
     )
 }

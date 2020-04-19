@@ -1,19 +1,21 @@
-import React, {useState, useRef} from 'react'
+import React from 'react'
 import {View, Text, StyleSheet, Button, Alert} from 'react-native'
-import Card from '../components/Card'
 import Colors from '../constants/colors'
 import Number from '../components/Number'
+import languageStrings from '../constants/strings'
 
 const GameOverScreen = props => {
+    const Strings = languageStrings[props.language];
+
     return (
         <View style={styles.screen}>
-            <Text style={styles.header}>Game Over !!!</Text>
-            <Text>Number of Rounds: {props.totalRounds}</Text>
-            <Text>The Number was</Text>
+            <Text style={styles.header}>{Strings.GameOverHeaderText}</Text>
+            <Text>{Strings.NumberOfRoundsHelpText}{props.totalRounds}</Text>
+            <Text>{Strings.SelectedNumberHelpText}</Text>
             <Number>{props.guessNumber}</Number>
             <View style={styles.buttonContainer}>
                 <Button 
-                    title="New Game" 
+                    title={Strings.StartNewGameButtonText} 
                     onPress={props.newGameHandler} 
                     color={Colors.primary}
                 />
